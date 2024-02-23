@@ -116,7 +116,7 @@ def predict():
     predictions = binary_model.predict(input_data_binary)
 
     # Threshold the predictions (assuming 0.5 as the threshold)
-    binary_predictions = (predictions > 0).astype(int)
+    binary_predictions = (predictions > 0.45).astype(int)
 
     # Convert binary predictions back to original labels
     label_encoder2 = LabelEncoder()
