@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Heart Disease Prediction</title>
+</head>
+<body>
+
+    <h1>Heart Disease Prediction</h1>
+
+    <form id="chatbotForm" onsubmit="predict(); return false;">
+
+        <!-- Labels and Entry widgets for input -->
+        <label for="Age">Age:</label>
+        <input type="text" id="Age" required>
+
+        <label for="Sex">Sex:</label>
+        <input type="text" id="Sex" required>
+
+        <label for="RestingBP">Resting BP:</label>
+        <input type="text" id="RestingBP" required>
+
+        <label for="Cholesterol">Cholesterol:</label>
+        <input type="text" id="Cholesterol" required>
+
+        <label for="FastingBS">Fasting BS:</label>
+        <input type="text" id="FastingBS" required>
+
+        <label for="RestingECG">Resting ECG:</label>
+        <input type="text" id="RestingECG">
+
+        <label for="MaxHR">Max HR:</label>
+        <input type="text" id="MaxHR" required>
+
+        <label for="ExerciseAngina">Exercise Angina:</label>
+        <input type="text" id="ExerciseAngina">
+
+        <label for="Oldpeak">Oldpeak:</label>
+        <input type="text" id="Oldpeak" required>
+
+        <label for="ST_Slope">ST Slope:</label>
+        <input type="text" id="ST_Slope">
+
+        <!-- Result text area -->
+        <label for="result">Result:</label>
+        <textarea id="result" rows="2" cols="30" readonly></textarea>
+
+        <!-- Submit button -->
+        <button type="submit">Submit</button>
+
+    </form>
+
+    <script>
+        function predict() {
+            // Collect input values from the form
+            var input_values = {
+                'Age': parseFloat(document.getElementById('Age').value),
+                'Sex': document.getElementById('Sex').value,
+                'RestingBP': parseFloat(document.getElementById('RestingBP').value),
+                'Cholesterol': parseFloat(document.getElementById('Cholesterol').value),
+                'FastingBS': parseFloat(document.getElementById('FastingBS').value),
+                'RestingECG': document.getElementById('RestingECG').value,
+                'MaxHR': parseFloat(document.getElementById('MaxHR').value),
+                'ExerciseAngina': document.getElementById('ExerciseAngina').value,
+                'Oldpeak': parseFloat(document.getElementById('Oldpeak').value),
+                'ST_Slope': document.getElementById('ST_Slope').value
+            };
+    
+            // Make a request to the server for prediction
+            // Replace 'http://localhost:5000/predict' with your actual server endpoint
+            var api_url = 'http://localhost:5000/predict';
+            
+            // Use fetch API to make a POST request
+            fetch(api_url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({'new_record': input_values})
+            })
+            .then(response => response.json())
+            .then(predictions => {
+                var result_text = "Predicted Chest Pain Type: " + predictions.predicted_chest_pain_type + ", Heart Patient: " + predictions.predicted_patient_has_disease;
+                document.getElementById('result').value = result_text;
+            })
+            .catch(error => {
+    console.error('Error:', error);
+    document.getElementById('result').value = "Error: " + error.message;
+});
+        }
+    </script>
+    
+
+</body>
+</html>
+

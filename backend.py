@@ -3,6 +3,7 @@ import sys
 import pandas as pd
 import numpy as np
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 from sklearn import model_selection
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from keras.models import Sequential, load_model
@@ -19,6 +20,7 @@ warnings.filterwarnings("ignore", category=Warning, module="tensorflow")
 
 # Flask app initialization
 app = Flask(__name__)
+CORS(app)
 
 # Define categorical features
 categorical_features = ['Sex', 'RestingECG', 'ExerciseAngina', 'ST_Slope']

@@ -15,4 +15,5 @@ for additional info, refer the code in detail
 ## pip install Flask
 ## pip install scikit-learn
 ## pip install keras
+## pip install flask-cors
 
