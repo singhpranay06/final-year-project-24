@@ -5,6 +5,7 @@ python - 3.9.11
 - Do not alter the code in backend.py
 - The api url is : http://localhost:5000/predict
 - The name of the request packet is : new_record
+- **push changes only to the feature branch**
 
 for additional info, refer the code in detail
 
