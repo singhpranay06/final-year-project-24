@@ -5,53 +5,147 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Heart Disease Prediction</title>
+    <style>
+        body {
+            background: url('imageheart1.jpg');
+            background-repeat: no-repeat;
+            background-size: cover;
+            color: #333;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            height: 108vh;
+        }
+        .container{
+            display: flex;
+            justify-content:flex-start;
+            align-items: center;
+        }
+        h1 {
+            text-align: center;
+            color: #1f497d;
+        }
+
+        .form {
+            background-color:#2C2C2C; 
+            /* Adjust alpha value as needed */
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(237, 5, 5, 0.7);
+            width: 25%;
+            
+        }
+        
+        .imageContainer{
+            height: 96vh;
+            
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #fff;
+            font-weight: bold; /* Added bold font weight */
+        }
+
+        input,
+        select,
+        textarea {
+            width: calc(100% - 22px); /* Adjusted width to account for padding and border */
+            padding: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: rgb(238, 82, 82);
+            font-size: 20px;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #405580;
+        }
+
+        textarea {
+            resize: vertical;
+        }
+        .btn{
+            display: flex;
+            justify-content: flex-end;
+            margin-right: 17px;
+        }
+    </style>
 </head>
 <body>
 
-    <h1>Heart Disease Prediction</h1>
+<div class="container">
+    <div class="form">
+        <form id="chatbotForm" onsubmit="predict(); return false;">
 
-    <form id="chatbotForm" onsubmit="predict(); return false;">
-
-        <!-- Labels and Entry widgets for input -->
-        <label for="Age">Age:</label>
-        <input type="text" id="Age" required>
-
-        <label for="Sex">Sex:</label>
-        <input type="text" id="Sex" required>
-
-        <label for="RestingBP">Resting BP:</label>
-        <input type="text" id="RestingBP" required>
-
-        <label for="Cholesterol">Cholesterol:</label>
-        <input type="text" id="Cholesterol" required>
-
-        <label for="FastingBS">Fasting BS:</label>
-        <input type="text" id="FastingBS" required>
-
-        <label for="RestingECG">Resting ECG:</label>
-        <input type="text" id="RestingECG">
-
-        <label for="MaxHR">Max HR:</label>
-        <input type="text" id="MaxHR" required>
-
-        <label for="ExerciseAngina">Exercise Angina:</label>
-        <input type="text" id="ExerciseAngina">
-
-        <label for="Oldpeak">Oldpeak:</label>
-        <input type="text" id="Oldpeak" required>
-
-        <label for="ST_Slope">ST Slope:</label>
-        <input type="text" id="ST_Slope">
-
-        <!-- Result text area -->
-        <label for="result">Result:</label>
-        <textarea id="result" rows="2" cols="30" readonly></textarea>
-
-        <!-- Submit button -->
-        <button type="submit">Submit</button>
-
-    </form>
-
+            <!-- Labels and Entry widgets for input -->
+            <label for="Age">Age:</label>
+            <input type="text" id="Age" required>
+    
+            <label for="Sex">Sex:</label>
+            <select id="Sex" required>
+                <option value="M">M</option>
+                <option value="F">F</option>
+            </select>
+    
+            <label for="RestingBP">Resting BP:</label>
+            <input type="text" id="RestingBP" required>
+    
+            <label for="Cholesterol">Cholesterol:</label>
+            <input type="text" id="Cholesterol" required>
+    
+            <label for="FastingBS">Fasting BS:</label>
+            <input type="text" id="FastingBS" required>
+    
+            <label for="RestingECG">Resting ECG:</label>
+            <select id="RestingECG">
+                <option value="Normal">Normal</option>
+                <option value="ST">ST</option>
+                <option value="Lvh">Lvh</option>
+            </select>
+    
+            <label for="MaxHR">Max HR:</label>
+            <input type="text" id="MaxHR" required>
+    
+            <label for="ExerciseAngina">Exercise Angina:</label>
+            <select id="ExerciseAngina">
+                <option value="Y">Y</option>
+                <option value="N">N</option>
+            </select>
+    
+            <label for="Oldpeak">Oldpeak:</label>
+            <input type="text" id="Oldpeak" required>
+    
+            <label for="ST_Slope">ST Slope:</label>
+            <select id="ST_Slope">
+                <option value="Up">Up</option>
+                <option value="Flat">Flat</option>
+                <option value="Down">Down</option>
+            </select>
+    
+            <!-- Result text area -->
+            <label for="result">Result:</label>
+            <textarea id="result" rows="2" cols="30" readonly></textarea>
+    
+            <!-- Submit button -->
+            <div class="btn">
+                <button type="submit">Submit</button>
+            </div>
+    
+        </form>
+    </div>
+    
+</div>
     <script>
         function predict() {
             // Collect input values from the form
@@ -67,11 +161,11 @@
                 'Oldpeak': parseFloat(document.getElementById('Oldpeak').value),
                 'ST_Slope': document.getElementById('ST_Slope').value
             };
-    
+
             // Make a request to the server for prediction
             // Replace 'http://localhost:5000/predict' with your actual server endpoint
             var api_url = 'http://localhost:5000/predict';
-            
+
             // Use fetch API to make a POST request
             fetch(api_url, {
                 method: 'POST',
@@ -86,13 +180,11 @@
                 document.getElementById('result').value = result_text;
             })
             .catch(error => {
-    console.error('Error:', error);
-    document.getElementById('result').value = "Error: " + error.message;
-});
+                console.error('Error:', error);
+                document.getElementById('result').value = "Error: " + error.message;
+            });
         }
     </script>
-    
 
 </body>
 </html>
-

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HEART GUARD AI</title>
+
+    <!-- Font Awesome icon CDN -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+        body {
+            background: url('/frontend/imageheart1.jpg');
+            background-size: cover;
+            margin: 0;
+            /* Remove default margin */
+            overflow-x: hidden;
+            /* Prevent horizontal scrollbar */
+            
+        }
+
+        /* Add the following styles for chat messages */
+        #chat-box {
+            background-color: rgb(255, 255, 255);
+            /* Set to your desired color */
+            padding: 10px;
+            font-size: 12px;
+            height: 24.2rem;
+            overflow: auto;
+            text-align: left;
+        }
+
+        /* Style for consistent text size in messages */
+        .msg {
+            font-size: 24px;
+            /* Increase the font size for messages */
+            padding: 10px;
+            /* Add padding to messages */
+            text-align: left;
+            /* Align text to the left */
+        }
+
+        /* Style the machine's messages */
+        .machine-message {
+            font-size: 24px;
+            background-color: white;
+            /* Set background color to white */
+            color: black;
+            /* Set text color to black */
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 10px;
+            cursor: pointer;
+            max-width: 65%;
+            text-align: left;
+        }
+
+        /* Change color of machine messages on hover */
+        .machine-message:hover {
+            background-color: #0048ff;
+            /* Set to a slightly darker white or your desired color */
+        }
+
+        /* Style the user's messages */
+        .user-message {
+            background-color: #002aff;
+            /* Set to blue or your desired color */
+            color: #000000;
+            /* Set to a dark color or your desired text color */
+            padding: 8px;
+            margin: 5px 0;
+            border-radius: 5px;
+            cursor: pointer;
+            max-width: 65%;
+            text-align: left;
+        }
+
+        /* Change color of user messages on hover */
+        .user-message:hover {
+            background-color: #0467f2;
+            /* Set to a slightly darker blue or your desired color */
+        }
+
+        /* Position the chatbot at the bottom right corner */
+        #test {
+            position: fixed;
+            bottom: 0;
+            right: 0;
+            margin: 20px;
+            display: none;
+        }
+
+        .navbar {
+            background-color: #000000;
+            padding: 30px;
+            height: 15px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 1000;
+            color: white; /* Set text color to white */
+        }
+
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .navbar-logo img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .navbar h1 {
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: #000000;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+            color: white; /* Set text color to white */
+        }
+
+        .parent {
+            display: flex;
+            align-items:center;
+            justify-content: flex-end;
+            height: 100vh;
+            margin-right: 150px;
+        }
+        #init {
+            color: white;
+            transition: background-color 0.3s, color 0.3s, font-size 0.3s;
+            font-size: 16px;
+            margin-top: 2rem;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        .btn{
+            background-color: rgb(235, 83, 83);
+            font-size: 18px;
+        }
+        .btn:hover{
+            background-color: #3987f4;
+        }
+    </style>
+</head>
+
+<body>
+   
+
+    <div class="parent">
+        <div class="desc">
+            <h1 class="text" style="color: #fff; font-size:40px">Doctor Chatbot</h1>
+            <p style="color: rgb(253, 249, 249);font-size:20px;">Know your heart-related doubts, preventive measures</p>
+            <button class="btn" id="init">START CHAT</button>
+        </div>
+    </div>
+
+    <div id="test">
+        <div class="child" id="chatbot">
+            <div class="header">
+                <div class="h-child">
+                    <img src="/Javascript-Chatbot/chatbot.png" alt="avatar" id="avatar">
+                    <div>
+                        <span class="name">Doctor Bot</span>
+                        <br>
+                        <span style="color: lawngreen">online</span>
+                    </div>
+                </div>
+                <div>
+                    <button class="refBtn"><i class="fa fa-refresh" onclick="initChat()"></i></button>
+                </div>
+            </div>
+            <div id="chat-box"></div>
+        </div>
+        <div class="footer">
+            <span>Powered by PPRR</span>
+        </div>
+    </div>
+
+    <!-- JavaScript file -->
+    <script src="script.js"></script>
+</body>
+
+</html>

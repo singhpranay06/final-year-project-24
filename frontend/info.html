@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      background-color: #ffffff00;
+      margin: 0;
+    }
+    
+
+    .ag-format-container {
+      width: 80%;
+      margin: 0 auto;
+      padding-top: 120px;
+    }
+
+  
+
+    .ag-courses_box {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+    }
+
+    .ag-courses_item {
+      flex-basis: calc(33.33333% - 20px);
+      margin-bottom: 30px;
+      overflow: hidden;
+      border-radius: 12px;
+      transition: box-shadow 0.5s ease;
+      border: 2px solid #000; /* Add this line for the black border */
+    }
+
+    .ag-courses-item_link {
+      display: block;
+      padding: 20px;
+      background-color: #ffffff;
+      text-decoration: none;
+      position: relative;
+    }
+
+    .ag-courses-item_title {
+      font-weight: bold;
+      font-size: 18px;
+      color: #000000;
+    }
+
+    .ag-courses-item_info {
+      display: none;
+      padding-top: 10px;
+    }
+
+    .ag-courses_item_bg {
+        height: 1800px;
+        width: 1800px;
+        background-color: rgba(86, 199, 182, 0.7);
+        z-index: 1;
+        position: absolute;
+        top: -10px;
+        right: -10px; /* Change left to right */
+        border-radius: 50%;
+        transition: all 0.5s ease;
+      }
+      
+
+    .ag-courses_item.clicked {
+      box-shadow: 0 0 25px rgba(86, 199, 182, 1);
+    }
+
+    .ag-courses_item.clicked .ag-courses-item_bg {
+      transform: scale(1.3);
+    }
+
+    .ag-courses_item.clicked .ag-courses-item_info {
+      display: block;
+    }
+    header {
+      background-color: #deebea;/* Adjust the alpha value for transparency */
+      color: #072f30;
+      text-align: left;
+      padding: 10px;
+      position: fixed;
+      top: 0;
+      width: 100%;
+    }
+      footer {
+        background-color: #000000;
+        color: #fff;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+      }
+      .navbar {
+        background-color: #000000;
+        padding: 30px; /* Increase the padding by 50% */
+        height: 25px; /* Increase the height by 50% */
+        position: fixed;
+        top: 0;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        z-index: 1000;
+    }
+    .navbar-logo {
+        display: flex;
+        align-items: center;
+        color: #fff;
+        text-decoration: none;
+      }
+  
+      .navbar-logo img {
+        height: 40px; /* Adjust the height as needed */
+        margin-right: 10px;
+      }      
+      .navbar h1 {
+        font-weight: bold; /* Increase the boldness by 100% */
+      }
+  </style>
+</head>
+<body>
+  <div class="navbar">
+    <a href="#" class="navbar-logo">
+      <img src="logo.jpg" alt="Logo">
+      <h1>HEART GUARD AI</h1>
+    </a>
+  </div>
+   
+      <footer>
+        <p>© 2024 Your Heart Guard AI. All rights reserved.</p>
+      </footer>
+    
+  <div class="ag-format-container">
+    <h1>Information Related Blood parameter</h1>
+    <div class="ag-courses_box">     
+       <!-- Card 1 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            1. Age
+          </div>
+          <div class="ag-courses-item_info">
+            <p>As individuals age, the risk of cardiovascular issues tends to increase.</p>
+          </div>
+        </div>
+      </div>
+       <!-- Card 2 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            2. Sex
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Gender plays a role in heart health, with variations in risk factors. For example, men generally face a higher risk of heart disease at a younger age, while women may experience an increased risk after menopause.</p>
+          </div>
+        </div>
+      </div>
+       <!-- Card 3 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            3. Resting BP (Blood Pressure)
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Resting blood pressure is a crucial indicator of heart health. High blood pressure, or hypertension, strains the heart and arteries, increasing the risk of heart disease and stroke. </p>
+          </div>
+        </div>
+      </div>
+       <!-- Card 4 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            4. Cholesterol
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Cholesterol levels impact heart health, with high levels of LDL ("bad") cholesterol and low levels of HDL ("good") cholesterol increasing the risk of atherosclerosis. This condition involves the buildup of fatty deposits in the arteries, restricting blood flow and potentially leading to heart attacks or strokes.</p>
+          </div>
+        </div>
+      </div>
+       <!-- Card 5 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            5. Fasting BS (Blood Sugar)
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Elevated fasting blood sugar levels, indicative of diabetes or insulin resistance, are associated with an increased risk of heart disease. High blood sugar damages blood vessels over time, contributing to atherosclerosis and other cardiovascular complications.</p>
+          </div>
+        </div>
+      </div>
+       <!-- Card 6 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            6. Resting ECG (Electrocardiogram)
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Resting ECG provides information about the heart's electrical activity. Abnormalities in the ECG, such as irregular rhythms or signs of previous heart attacks, can indicate underlying heart conditions, helping to assess the overall heart health of an individual.</p>
+          </div>
+        </div>
+      </div>
+       <!-- Card 7 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            7. Max HR (Maximum Heart Rate)
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Maximum heart rate is an important parameter during exercise stress testing. It helps evaluate cardiovascular fitness and provides insights into the heart's ability to respond to physical stress. Regular exercise that aligns with one's maximum heart rate can enhance heart health and overall well-being.</p>
+        </div>
+      </div>
+      </div>
+       <!-- Card 8 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            8. Exercise Angina
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Exercise-induced angina, chest pain or discomfort during physical activity, may signal inadequate blood flow to the heart. This symptom requires attention, as it can indicate underlying coronary artery disease and an increased risk of heart events.</p>
+          </div>
+        </div>
+      </div>
+       <!-- Card 9 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            9. Oldpeak
+          </div>
+          <div class="ag-courses-item_info">
+            <p>Oldpeak, or the ST depression during exercise, is an ECG change associated with reduced blood flow to the heart. It can be a sign of coronary artery disease and may indicate the severity of the condition. Monitoring oldpeak helps assess the risk of future cardiovascular events.</p>                
+          </div>
+        </div>
+      </div>
+       <!-- Card 10 -->
+       <div class="ag-courses_item" onclick="toggleCard(this)">
+        <div class="ag-courses-item_link">
+          <div class="ag-courses-item_bg"></div>
+          <div class="ag-courses-item_title">
+            10. ST Slope
+          </div>
+          <div class="ag-courses-item_info">
+            <p>The ST slope on an ECG measures the upward or downward direction of the ST segment. Abnormal ST slope changes during exercise can suggest myocardial ischemia, a condition where the heart muscle receives insufficient blood supply. This is a critical factor in assessing heart health and identifying potential cardiovascular risks.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function toggleCard(card) {
+      // Remove 'clicked' class from all cards
+      document.querySelectorAll('.ag-courses_item').forEach(function(item) {
+        item.classList.remove('clicked');
+      });
+
+      // Add 'clicked' class to the clicked card
+      card.classList.add('clicked');
+    }
+  </script>
+</body>
+</html>
