@@ -1,11 +1,14 @@
 document.addEventListener("DOMContentLoaded", function () {
+    const parent=document.getElementById("parentDiv")
     const initButton = document.getElementById("init");
     const closeChatButton = document.getElementById("close-chat");
     const chatBox = document.getElementById("chat-box");
     const test = document.getElementById("test");
 
     initButton.addEventListener("click", function () {
+        
         test.style.display = "block"; // Display the chatbot
+        parent.style.display="none";
         initChat();
     });
 
@@ -18,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function () {
         chatBox.innerHTML = "";
 
         // Welcome message
-        showMessage("Hi! I am your Medbot.");
+        showMessage("Hi! I am your Medbot.I am Here to Assist You with your heart health related issues.");
 
         // Provide options to the user
         showOptions([
