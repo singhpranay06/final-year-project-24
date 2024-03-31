@@ -3,7 +3,7 @@ import sys
 import pandas as pd
 import numpy as np
 from flask import Flask, jsonify, request
-from flask_cors import CORS
+from flask_cors import CORS, cross_origin
 from sklearn import model_selection
 from sklearn.preprocessing import StandardScaler, LabelEncoder
 from keras.models import Sequential, load_model
@@ -74,7 +74,7 @@ def preprocess_input_multi(new_record):
     new_record_df[categorical_features] = new_record_df[categorical_features].astype('category')
 
     # Select only the features used during training (exclude the target variable)
-    new_record_for_prediction = new_record_df[['Age', 'Sex', 'RestingBP', 'Cholesterol', 'FastingBS', 'RestingECG', 'MaxHR', 'ExerciseAngina', 'Oldpeak', 'ST_Slope', 'HeartDisease']]
+    new_record_for_prediction = new_record_df[['Age', 'Sex', 'RestingBP', 'Cholesterol', 'FastingBS', 'RestingECG', 'MaxHR', 'ExerciseAngina', 'Oldpeak', 'ST_Slope']]
 
     # Standardize numerical features
     scaler1 = StandardScaler()
@@ -95,6 +95,7 @@ def preprocess_input_multi(new_record):
 
 # Flask API endpoint for prediction
 @app.route('/predict', methods=['POST'])
+@cross_origin(origin='http://127.0.0.1:5500', headers=['Content-Type', 'Authorization'])
 def predict():
     data = request.get_json()
     new_record = data['new_record']
@@ -124,9 +125,6 @@ def predict():
     label_encoder2 = LabelEncoder()
     label_encoder2.fit_transform([0,1])
     binary_decoded_prediction = label_encoder2.inverse_transform(binary_predictions.ravel())
-
-
-
 
     return jsonify({'predicted_chest_pain_type': multi_predicted_class_decoded.tolist(),
                     'predicted_patient_has_disease' : binary_decoded_prediction.tolist()})
