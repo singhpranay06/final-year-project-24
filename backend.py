@@ -130,5 +130,5 @@ def predict():
                     'predicted_patient_has_disease' : binary_decoded_prediction.tolist()})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)
     print("Flask server started and listening.")
