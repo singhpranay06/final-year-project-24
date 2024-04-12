@@ -80,6 +80,19 @@
             justify-content: flex-end;
             margin-right: 17px;
         }
+        .report{
+            display: none;
+            background-color: rgb(238, 82, 82);
+            font-size: 20px;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .buttonFlex{
+            display: flex;
+        }
     </style>
 </head>
 <body>
@@ -138,11 +151,16 @@
             <textarea id="result" rows="2" cols="30" readonly></textarea>
     
             <!-- Submit button -->
+           <div class="buttonFlex">
             <div class="btn">
-                <button type="submit">Submit</button>
+                <button id="submitButton" type="submit">Submit</button>
             </div>
-    
+            <div class="report" id="reportid">
+                <a href="./frontend/report.html" style="text-decoration: none; color: white;">Report</a>
+            </div>
+           </div>
         </form>
+        
     </div>
     
 </div>
@@ -161,7 +179,10 @@
                 'Oldpeak': parseFloat(document.getElementById('Oldpeak').value),
                 'ST_Slope': document.getElementById('ST_Slope').value
             };
+            var input_values_string = JSON.stringify(input_values);
 
+                // Set the string in localStorage with a key
+                localStorage.setItem('input_values', input_values_string);
             // Make a request to the server for prediction
             // Replace 'http://localhost:5000/predict' with your actual server endpoint
             var api_url = 'http://localhost:5000/predict';
@@ -178,6 +199,10 @@
             .then(predictions => {
                 var result_text = "Predicted Chest Pain Type: " + predictions.predicted_chest_pain_type + ", Heart Patient: " + predictions.predicted_patient_has_disease;
                 document.getElementById('result').value = result_text;
+                
+               localStorage.setItem("type",predictions.predicted_chest_pain_type)
+               localStorage.setItem("desesesFlag",predictions.predicted_patient_has_disease);
+               document.getElementById('reportid').style.display="block"
             })
             .catch(error => {
                 console.error('Error:', error);

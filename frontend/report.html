@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Patient Hospital Report</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 20px;
+    }
+
+    h1 {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    th, td {
+      padding: 10px;
+      text-align: left;
+      border-bottom: 1px solid #ddd;
+    }
+
+    th {
+      background-color: #f2f2f2;
+      font-weight: bold;
+    }
+
+    .result {
+      min-height: 100px;
+      padding: 10px;
+      background-color: #fff;
+      border-radius: 5px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 20px;
+    }
+
+    .button {
+      background-color: #4CAF50;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin-top: 20px;
+      border-radius: 5px;
+    }
+    .container {
+      max-width: 600px; /* adjust as needed */
+      margin: 0 auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    .sampleid{
+      font-weight: 900;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+  <div>
+    <h1>Patient Hospital Report</h1>
+    <p id="patientId" class="sampleid"></p>
+  </div>
+  
+  <table>
+    <tr>
+      <th>Parameter</th>
+      <th>Value</th>
+    </tr>
+    <tr>
+      <td>Age</td>
+      <td id="age"></td>
+    </tr>
+    <tr>
+      <td>Sex</td>
+      <td id="sex"></td>
+    </tr>
+    <tr>
+      <td>Resting BP</td>
+      <td id="restingBP"></td>
+    </tr>
+    <tr>
+      <td>Cholesterol</td>
+      <td id="cholesterol"></td>
+    </tr>
+    <tr>
+      <td>Fasting BS</td>
+      <td id="fastingBS"></td>
+    </tr>
+    <tr>
+      <td>Resting ECG</td>
+      <td id="restingECG"></td>
+    </tr>
+    <tr>
+      <td>Max HR</td>
+      <td id="maxHR"></td>
+    </tr>
+    <tr>
+      <td>Exercise Angina</td>
+      <td id="exerciseAngina"></td>
+    </tr>
+    <tr>
+      <td>Oldpeak</td>
+      <td id="oldpeak"></td>
+    </tr>
+    <tr>
+      <td>ST Slope</td>
+      <td id="stSlope"></td>
+    </tr>
+  </table>
+
+  <div class="result" id="result">
+    <p id="type"></p>
+    <p id="flag"></p>
+  </div>
+
+  <a href="#" class="button" id="goBack">Reset</a>
+  <a href="#" class="button" id="print">Print</a>
+</div>
+
+  <script>
+    const random=()=>{
+      return Math.floor(Math.random()*10000000);
+    }
+    // Retrieve data from localStorage and display in table
+    let stored_input_values_string = localStorage.getItem('input_values');
+
+// Parse the string back to an object
+let input = JSON.parse(stored_input_values_string);
+
+// Update HTML elements with retrieved values
+document.getElementById('age').innerText = input['Age'];
+document.getElementById('sex').innerText = input['Sex'];
+document.getElementById('restingBP').innerText = input['RestingBP'];
+document.getElementById('cholesterol').innerText = input['Cholesterol'];
+document.getElementById('fastingBS').innerText = input['FastingBS'];
+document.getElementById('restingECG').innerText = input['RestingECG'];
+document.getElementById('maxHR').innerText = input['MaxHR'];
+document.getElementById('exerciseAngina').innerText = input['ExerciseAngina'];
+document.getElementById('oldpeak').innerText = input['Oldpeak'];
+document.getElementById('stSlope').innerText = input['ST_Slope'];
+document.getElementById('type').innerText = "Predicted Chest Pain Type: "+localStorage.getItem('type');
+const flagValue=localStorage.getItem('desesesFlag')?"No":"Yes";
+
+document.getElementById('flag').innerText = "Heart Disease: "+flagValue;
+document.getElementById('goBack').addEventListener('click', ()=> {
+      localStorage.clear();
+      history.back()
+})
+document.getElementById('print').addEventListener('click', ()=> {
+      window.print()
+})
+document.getElementById('patientId').innerText="Patient Id: "+random()
+
+  </script>
+</body>
+</html>

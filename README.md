@@ -7,10 +7,6 @@ python - 3.9.11
 - The name of the request packet is : new_record
 - **push changes only to the feature branch**
 
-# startup
-- python -m waitress --listen=127.0.0.1:5000 backend:app
-
-
 for additional info, refer the code in detail
 
 # modules to install:-
@@ -20,5 +16,4 @@ for additional info, refer the code in detail
 ## pip install scikit-learn
 ## pip install keras
 ## pip install flask-cors
-## pip install gunicorn
 
